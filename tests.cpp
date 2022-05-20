@@ -1,16 +1,19 @@
-#include <cstdlib>
-#include <unistd.h>
-#include <tuple>
-#include <fstream>
-#include <iomanip>
-#include <algorithm>
-#include <typeinfo>
-#include <cmath>
-#include <cstring>
-#include <iostream>
 #include "graph.cpp"
+#include <iostream>
 
 using namespace std;
+
+void check(graph<int> g) {
+	cout << g;
+}
+
+void chech(graph<string> g) {
+	cout << g;
+}
+
+void check(graph<graph<int>> g) {
+	cout << g;
+}
 
 int main() {
     graph<string> temp(3);
