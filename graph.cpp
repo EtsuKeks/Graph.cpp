@@ -1,12 +1,7 @@
 #include <cstdlib>
-#include <unistd.h>
 #include <tuple>
-#include <fstream>
 #include <iomanip>
 #include <algorithm>
-#include <typeinfo>
-#include <cmath>
-#include <cstring>
 #include <iostream>
 #include "graph.h"
 
@@ -99,21 +94,21 @@ void graph<T>::Push_Edge(T val, int i, int j)
         return;
     }
 
-    if (g_size < i || g_size < j) {
-        int n = max(i, j);
-        g_arr = (pair<int, T> *) realloc(g_arr,n * n * sizeof(pair<int, T>));
-        if (g_arr == NULL) {
-            cerr << "Not enough memory" << endl;
-            throw EMALLOC;
-            return;
-        }
-
-        for (int k = g_size * g_size; k < n * n; ++k) {
-            pair<int, T> temp;
-            temp.first = 0;
-            g_arr[k] = temp;
-        }
-        g_size = n;
+	if (g_size < i || g_size < j) {
+            int n = max(i, j);
+            pair<int, T> *temporary;
+            temporary = new pair<int, T> [n * n];
+            for (int k = 0; k < g_size * g_size; ++k) {
+                temporary[k] = g_arr[k];
+            }
+            for (int k = g_size * g_size; k < n * n; ++k) {
+                pair<int, T> temp;
+                temp.first = 0;
+                temporary[k] = temp;
+            }
+            g_size = n;
+            delete [] g_arr;
+            g_arr = temporary;
     }
 
     int number;
