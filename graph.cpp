@@ -49,12 +49,10 @@ T graph<T>::Pop_Edge(int i, int j)
     if (i < 1 || i > g_size) {
         cerr << "Invalid argument: " << i << endl;
         throw EINVARG;
-        return NULL;
     }
     if (j < 1 || j > g_size) {
         cerr << "Invalid argument: " << j << endl;
         throw EINVARG;
-        return NULL;
     }
 
     int number;
@@ -73,7 +71,6 @@ T graph<T>::Pop_Edge(int i, int j)
     } else {
         cerr << "Invalid argument: there's no such edge as (" << i << ", " << j << ")" << endl;
         throw EABSENCE;
-        return NULL;
     }
     return val;
 }
@@ -81,17 +78,14 @@ T graph<T>::Pop_Edge(int i, int j)
 template <class T>
 void graph<T>::Push_Edge(T val, int i, int j)
 {
-
     if (i <= 0) {
         cerr << "Invalid argument: " << i << endl;
         throw EINVARG;
-        return;
     }
 
     if (j <= 0) {
         cerr << "Invalid argument: " << j << endl;
         throw EINVARG;
-        return;
     }
 
 	if (g_size < i || g_size < j) {
