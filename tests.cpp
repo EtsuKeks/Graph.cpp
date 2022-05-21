@@ -7,10 +7,6 @@ void check(graph<int> g) {
 	cout << g;
 }
 
-void chech(graph<string> g) {
-	cout << g;
-}
-
 void check(graph<graph<int>> g) {
 	cout << g;
 }
@@ -138,6 +134,102 @@ int main() {
 		cout << "Test_14\t->\tPASSED" << endl;
 	else
 		cout << "Test_14\t->\tFAILED" << endl;
+	
+	try {
+        g1->Pop_Edge(-1, 1);
+    } catch (const graph<int>::GRAPH_ERR &ex) {
+		if (ex == graph<int>::EINVARG) {
+        	cout << "Test_15\t->\tPASSED" << endl;
+		} else {
+			cout << "Test_15\t->\tFAILED" << endl;
+		}
+    }
+
+	try {
+        g1->Pop_Edge(1, -1);
+    } catch (const graph<int>::GRAPH_ERR &ex) {
+        if (ex == graph<int>::EINVARG) {
+            cout << "Test_16\t->\tPASSED" << endl;
+        } else {
+            cout << "Test_16\t->\tFAILED" << endl;
+        }
+    }
+
+	try {
+        g1->Pop_Edge(2, 1);
+    } catch (const graph<int>::GRAPH_ERR &ex) {
+        if (ex == graph<int>::EABSENCE) {
+            cout << "Test_17\t->\tPASSED" << endl;
+        } else {
+            cout << "Test_17\t->\tFAILED" << endl;
+        }
+    }
+
+	try {
+        g1->Pop_Edge(-1, 1);
+    } catch (const graph<int>::GRAPH_ERR &ex) {
+        if (ex == graph<int>::EINVARG) {
+            cout << "Test_18\t->\tPASSED" << endl;
+        } else {
+            cout << "Test_18\t->\tFAILED" << endl;
+        }
+    }
+
+	try {
+        g1->Push_Edge(-1, 1, -1);
+    } catch (const graph<int>::GRAPH_ERR &ex) {
+        if (ex == graph<int>::EINVARG) {
+            cout << "Test_19\t->\tPASSED" << endl;
+        } else {
+            cout << "Test_19\t->\tFAILED" << endl;
+        }
+    }
+
+	try {
+        g1->Push_Edge(-1, -1, 1);
+    } catch (const graph<int>::GRAPH_ERR &ex) {
+        if (ex == graph<int>::EINVARG) {
+            cout << "Test_20\t->\tPASSED" << endl;
+        } else {
+            cout << "Test_20\t->\tFAILED" << endl;
+        }
+    }
+
+	try {
+        g1->Push_Edge(-1, 1, 2);
+    } catch (...) {
+        cout << "Test_21\t->\tFAILED" << endl;
+    }
+	cout << "Test_21\t->\tPASSED" << endl;
+
+	try {
+        g1->Push_Edge(-1, 2, 1);
+    } catch (...) {
+        cout << "Test_22\t->\tFAILED" << endl;
+    }
+	cout << "Test_22\t->\tPASSED" << endl;
+
+	try {
+        g1->Push_Edge(-1, -1, 2);
+    } catch (const graph<int>::GRAPH_ERR &ex) {
+        if (ex == graph<int>::EINVARG) {
+            cout << "Test_23\t->\tPASSED" << endl;
+        } else {
+            cout << "Test_23\t->\tFAILED" << endl;
+        }
+    }
+
+	try {
+        g1->Push_Edge(-1, 1, -1);
+    } catch (const graph<int>::GRAPH_ERR &ex) {
+        if (ex == graph<int>::EINVARG) {
+            cout << "Test_24\t->\tPASSED" << endl;
+        } else {
+            cout << "Test_24\t->\tFAILED" << endl;
+        }
+    }
+
+	
 
 	delete g1;
 	delete g2;
